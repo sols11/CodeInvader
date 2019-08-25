@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AssemblyUI
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 942575c45930ef6469ffac0cf306e587, type: 3}
+    - {fileID: 2800000, guid: 16ef287869add2c4bb5af6b7c56c5c5e, type: 3}
+    - {fileID: 2800000, guid: 2fda4d6990b947c40b98fe5a726ce0ce, type: 3}
+    - {fileID: 2800000, guid: 1700ae3f594aeba46bec75abe4815d47, type: 3}
+    - {fileID: 2800000, guid: 501e00cb0bbc34a46a82f1a13ff8be20, type: 3}
+    - {fileID: 2800000, guid: 3faea5d3037b0ee40b0c16a990105961, type: 3}
+    - {fileID: 2800000, guid: a3d41abe1f4314545a96b2e8565c0589, type: 3}
+    - {fileID: 2800000, guid: 69cbe53d07933ad4093b6af9e85dcdd6, type: 3}
+    - {fileID: 2800000, guid: a9f5ff59ecf400b4581fd0bc1fb33684, type: 3}
+    - {fileID: 2800000, guid: ebf6c78eea2b1eb4bbbf90e65cbc074f, type: 3}
+    - {fileID: 2800000, guid: e7b9722799b7c6448a9ae1fe97d90736, type: 3}
+    totalSpriteSurfaceArea: 500768
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 3faea5d3037b0ee40b0c16a990105961, type: 3}
+  - {fileID: 21300000, guid: 942575c45930ef6469ffac0cf306e587, type: 3}
+  - {fileID: 21300000, guid: e7b9722799b7c6448a9ae1fe97d90736, type: 3}
+  - {fileID: 21300000, guid: 16ef287869add2c4bb5af6b7c56c5c5e, type: 3}
+  - {fileID: 21300000, guid: a9f5ff59ecf400b4581fd0bc1fb33684, type: 3}
+  - {fileID: 21300000, guid: 2fda4d6990b947c40b98fe5a726ce0ce, type: 3}
+  - {fileID: 21300000, guid: 501e00cb0bbc34a46a82f1a13ff8be20, type: 3}
+  - {fileID: 21300000, guid: 69cbe53d07933ad4093b6af9e85dcdd6, type: 3}
+  - {fileID: 21300000, guid: ebf6c78eea2b1eb4bbbf90e65cbc074f, type: 3}
+  - {fileID: 21300000, guid: a3d41abe1f4314545a96b2e8565c0589, type: 3}
+  - {fileID: 21300000, guid: 1700ae3f594aeba46bec75abe4815d47, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - NumericalValueBalck
+  - Equipment
+  - BlackSquare
+  - Back
+  - SeekBarWhilte
+  - EssentialAttribute
+  - NumericalValue
+  - SeekBarBlack
+  - Square
+  - mode
+  - Name
+  m_Tag: AssemblyUI
+  m_IsVariant: 0

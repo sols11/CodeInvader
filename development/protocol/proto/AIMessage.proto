@@ -1,0 +1,82 @@
+syntax = "proto3";
+import "Struct/CommonStruct.proto";
+package AIMessage;
+
+enum proto_ids {
+    option allow_alias = true;
+    EMPTY_PROTO = 0;
+    // service id
+    ROBOT_SERVICE = 0x0004;
+
+    // command id
+    GET_BEHAVIOR_TREE = 0x0001;
+    MOVE = 0x0002;
+    ATTACK = 0x0003;
+    TAKE_DAMAGE = 0x0004;
+}
+
+// message ParametersObject
+// {
+//     int32 parameter1 = 1;
+//     int32 parameter2 = 2;
+// }
+
+message ConditionObject {
+    int32 subjectType = 1;
+    int32 subjectInd = 2;
+    int32 statusType = 3;
+    repeated int32 parameters = 4;
+    // oneof parameters 
+    // {
+    //     int32 parameter = 4;
+    //     ParametersObject parameterList = 5;
+    // }
+}
+
+message ActionObject {
+    int32 actionType = 1;
+    int32 targetType = 2;
+    int32 targetInd = 3;
+}
+
+message ClauseObject {
+    int32 clauseType = 1;
+    oneof clause {
+        ConditionObject condition = 2;
+        ActionObject action = 3;
+    }
+}
+
+message SentenceObject {
+    repeated ClauseObject sentence = 1;
+}
+
+message GetBehaviorTreeRequest {
+    int32 rid = 1;
+    int32 eid = 2;
+    repeated SentenceObject program = 3;
+}
+
+message GetBehaviorTreeResponse {
+    int32 result = 1;
+    int32 eid = 2;
+}
+
+// 8.23 新增
+message RobotMoveResponse {
+    int32 eid = 1; // 机器人eid
+    repeated CommonStruct.NetVector3 way_points = 2; // 路点列表
+}
+
+message RobotAttackResponse {
+    int32 eid = 1; // 攻击的机器人eid
+    bool left = 2; // 所使用的手
+    repeated int32 targets_eid = 3; // 攻击目标eid列表
+}
+
+message RobotTakeDamageResponse {
+    int32 eid = 1; // 受伤机器人eid
+    CommonStruct.DamageInfo damage_info = 2; // 伤害信息
+    bool is_dead = 3; // 受伤完是否死亡
+}
+

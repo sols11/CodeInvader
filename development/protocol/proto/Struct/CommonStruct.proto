@@ -1,0 +1,126 @@
+syntax = "proto3";
+package CommonStruct;
+
+// 定义两端公用数据结构
+// 其他proto文件引用方法
+// import "./Message/CommonStruct.proto"
+
+message NetVector2{
+  float x = 1;
+  float y = 2;
+}
+
+message NetVector3 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message NetQuaternion {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+  float w = 4;
+}
+
+message NetTransform {
+  NetVector3 position = 1;
+  NetQuaternion rotation = 2;
+}
+
+message NetPlayerData {
+  int32 eid = 1;
+  float move_speed = 2;
+  float rot_speed = 3;
+  int32 max_hp = 4;
+  int32 hp = 5;
+  NetState state = 6;
+  NetTransform transform = 7;
+}
+
+enum NetState {
+  Living = 0;
+  Death = 1;
+  Decoding = 2; // Decoding 目前是给Player用的
+}
+
+enum NetActionState {
+  Attacking = 0;
+  Retreating = 1;
+  Patrolling = 2;
+}
+
+enum RobotType {
+  Light = 0;
+  Medium = 1;
+  Heavy = 2;
+}
+
+message NetRobotData {
+  int32 eid = 1;
+  float move_speed = 2;
+  float rot_speed = 3;
+  int32 max_hp = 4;
+  int32 hp = 5;
+  NetState state = 6;
+  NetTransform transform = 7;
+  float armor_recover_delay = 8;
+  float armor_recover_speed = 9;
+  int32 free_weight = 10;
+  int32 max_armor = 12;
+  int32 armor = 13;
+  int32 signal_sending = 14;
+  NetActionState action_state = 15;
+  bool attacked = 16;
+  int32 attack_target_eid = 17;
+
+  // 还需要的信息：
+  // 机器人可以开启信号、结束信号。信号分ABCD。某机器人开启信号后所有机器人都会检测到对应信号。AI需要判断某机器人是否能检测到某信号。建议增加：repeated
+  // int32 signals 机器人还需要护甲，和血量差不多
+  // 机器人还需要检测如下几个状态：是否正在攻击、是否正在撤退、是否正在巡逻、是否正在被攻击、攻击目标是否正在撤退。
+  // 建议增加一个enum，包括攻击、撤退、巡逻，因为这三个是互相排斥的；需要有属性可以指向攻击目标，这样才能探测攻击目标的状态。可以用同样的方法指向攻击自己的人，或者也可以直接用一个boolean指示是否正在被攻击
+}
+
+enum EquipType {
+  Weapon = 0;
+  Head = 1;
+  Leg = 2;
+}
+
+enum WeaponType {
+  None = 0;
+  Sword = 1;
+  Shotgun = 2;
+  LaserGun = 3;
+  ChargeGun = 4;
+  Gatlin = 5;
+}
+
+message NetComputerData {
+  int32 eid = 1;
+  float need_time = 2;
+  float crack_timer = 3;
+  bool completed = 4;
+  bool being_decoded = 5;
+  NetTransform transform = 6;
+}
+
+message NetHomeData {
+  int32 eid = 1;
+  int32 max_hp = 2;
+  int32 hp = 3;
+  NetTransform transform = 4;
+}
+
+message DamageInfo {
+  int32 attack_id = 1;
+  repeated int32 hurt_id = 2;
+  int32 attack = 3;
+    // 特殊效果
+  int32 special_effects = 4;
+  // 每种特殊效果对应的数值
+  float beat_back = 5;
+  float speed_up = 6;
+  float slow_down = 7;
+  bool can_fly = 8;
+}

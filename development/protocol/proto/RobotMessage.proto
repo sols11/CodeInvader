@@ -1,0 +1,40 @@
+syntax = "proto3";
+import "Struct/CommonStruct.proto";
+package RobotMessage;
+
+enum proto_ids {
+  option allow_alias = true;
+  EMPTY_PROTO = 0;
+
+  // service id
+  PLAYER_SERVICE = 0x0003;
+
+  // command id
+  MOVE = 0x0001;
+  LEFT_ATTACK = 0x0002;
+  RIGHT_ATTACK = 0x0003;
+  HURT = 0x0004;
+}
+
+message RobotMoveResponse {
+  int32 result = 1;
+  int32 eid = 2;
+  CommonStruct.NetVector3 pos = 3;
+  CommonStruct.NetQuaternion rot = 4;
+}
+
+message LeftAttackResponse {
+  int32 result = 1;
+  int32 eid = 2; 
+}
+
+message RightAttackResponse {
+  int32 result = 1;
+  int32 eid = 2; 
+}
+
+message HurtResponse {
+  int32 result = 1;
+  int32 eid = 2;
+  CommonStruct.DamageInfo info = 3;
+}

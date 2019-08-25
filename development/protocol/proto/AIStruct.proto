@@ -1,0 +1,47 @@
+syntax = "proto3";
+package AIStruct;
+
+enum ClauseType {
+  Condition = 0;
+  Action = 1;
+  Decoration = 2;
+}
+
+enum EntityType {
+  Self = 0;
+  EnemyRobot = 1;
+  FriendlyRobot = 2;
+  EnemyPlayer = 3;
+  FrienlyPlayer = 4;
+  Waypoint = 5;
+}
+
+enum ActionType {
+  AttackLeft = 0;
+  AttackRight = 1;
+  Attack = 2;
+  MoveTowards = 3;
+  SendSignal = 4;
+  StopSignal = 5;
+  Patrol = 6;
+  Suicide = 7;
+  Retreat = 8;
+  Still = 9;
+}
+
+enum DecorationType { Timer = 0; }
+
+// 好像不建议使用负数，因此改为使用很大的数
+enum SpecialInt {
+  ShouldNotUse = 0; // proto3要求enum的第一项一定要是零。程序中不应该用到这个
+  CompareWithSelf = 63;
+  CompareWithAll = 62;
+  InvalidIndex =
+      61; //没有意义，但传输实体时为了统一，需要一个类别和Ind，而部分类别的实体并没有这个Ind
+}
+
+enum AIOperator {
+  LessEqual = 0;
+  Equal = 1;
+  MoreEqual = 2;
+}

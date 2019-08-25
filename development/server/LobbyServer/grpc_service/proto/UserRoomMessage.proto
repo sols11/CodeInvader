@@ -1,0 +1,112 @@
+syntax = "proto3";
+package UserRoomMessage;
+
+message UserObject
+{
+    int32 uid = 1;
+    int32 hid = 2;
+    int32 rid = 3;
+    int32 gid = 4;
+}
+
+message RoomObject
+{
+    int32 rid = 1;
+    string name = 2;
+    int32 gid = 3;
+    repeated UserObject users_lst  = 4;
+}
+
+message AddressObject
+{
+    string ip = 1;
+    int32 port = 2;
+}
+
+// broadcast
+message UserBuildRoomRequest
+{
+    int32 uid = 1;
+    string room_name = 2;
+}
+
+message UserBuildRoomResponse
+{
+    int32 result = 1;
+    RoomObject new_room_obj = 2;
+}
+
+// broadcast
+message UserEnterRoomRequest
+{
+    int32 rid = 1;
+    int32 uid = 2;
+}
+
+message UserEnterRoomResponse
+{
+    int32 result = 1;
+    RoomObject enter_room_obj = 2;
+}
+
+// broadcast
+message UserExitRoomRequest
+{
+    int32 rid = 1;
+    int32 uid = 2;
+}
+
+message UserExitRoomResponse
+{
+    int32 result = 1;
+    RoomObject exit_room_obj = 2;
+}
+
+// broadcast
+message UserStartGameRequest
+{
+    int32 rid = 1;
+    int32 uid = 2;
+}
+
+message UserStartGameResponse
+{
+    int32 result = 1;
+    RoomObject start_room_obj = 2;
+    AddressObject address = 3;
+}
+
+// sender
+message GetRoomsRequest
+{
+    int32 uid = 1;
+}
+
+message GetRoomsResponse
+{
+    int32 result = 1;
+    repeated RoomObject room_obj_lst = 2;
+}
+
+// sender
+message GetRoomByRidRequest
+{
+    int32 rid = 1;
+    int32 uid = 2;
+}
+
+message GetRoomByRidResponse
+{
+    int32 result = 1;
+    RoomObject room_obj = 2;
+}
+
+service UserRoom
+{
+    rpc UserBuildRoom (UserBuildRoomRequest) returns (UserBuildRoomResponse) { }
+    rpc UserEnterRoom (UserEnterRoomRequest) returns (UserEnterRoomResponse) { }
+    rpc UserExitRoom (UserExitRoomRequest) returns (UserExitRoomResponse) { }
+    rpc UserStartGame (UserStartGameRequest) returns (UserStartGameResponse) { }
+    rpc GetRooms (GetRoomsRequest) returns (GetRoomsResponse) { }
+    rpc GetRoomByRid (GetRoomByRidRequest) returns (GetRoomByRidResponse) { }
+}

@@ -1,0 +1,23 @@
+// 指定版本, 必须要写
+syntax = 'proto3';
+
+/* 可以不写
+ * 防止不同.proto项目间命名 
+ * 对于python, 该声明忽略
+ * 对于c#转换为命名空间
+  */
+package Demo;
+
+
+message DemoRequest
+{
+    int32 uid = 1;
+    string account = 2;
+    string password = 3;
+}
+
+message DemoResponse
+{
+    int32 uid = 1;
+    bool is_ok = 2;
+}

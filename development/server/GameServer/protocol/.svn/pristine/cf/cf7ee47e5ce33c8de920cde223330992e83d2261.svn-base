@@ -1,0 +1,25 @@
+# -*- coding:utf-8 -*-
+# @Time        : 2019/8/17 17:07
+# @Author      : liyihang@corp.netease.com
+# @File        : __init__.py
+# @Description : 
+# @API         :
+
+import numpy as np
+
+from protocol.pb2.Struct.CommonStruct_pb2 import *
+
+
+def to_vec(self):
+    return np.array([self.x, self.y, self.z])
+
+
+def euc_distance(self, other):
+    pos1 = self.to_vec()
+    pos2 = other.to_vec()
+    return np.linalg.norm(pos1 - pos2)
+
+
+NetVector3.to_vec = to_vec
+
+NetVector3.euc_distance = euc_distance

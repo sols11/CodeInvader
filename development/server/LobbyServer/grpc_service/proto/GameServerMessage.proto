@@ -1,0 +1,32 @@
+syntax = "proto3";
+package GameServerMessage;
+
+message ServerRegisterRequest
+{
+    int32 gid = 1;
+    string ip = 2;
+    int32 port = 3;
+}
+
+message ServerRegisterResponse
+{
+    int32 result = 1;
+}
+
+message ServerUpdateRequest
+{
+    int32 gid = 1;
+    float sleep_total_time = 2;
+}
+
+message ServerUpdateResponse
+{
+    int32 result = 1;
+}
+
+
+service GameServer
+{
+    rpc ServerRegister (ServerRegisterRequest) returns (ServerRegisterResponse) { }
+    rpc ServerUpdate (ServerUpdateRequest) returns (ServerUpdateResponse) { }
+}

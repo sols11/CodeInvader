@@ -1,0 +1,15 @@
+syntax = "proto3";
+import "Struct/ItemStruct.proto";
+package InventoryMessage;
+
+message ItemInfo
+{
+	int32 item_id = 1; // 某类物品Id
+	int32 count = 2;   // 该类物品的计数值
+}
+
+message BackpackInfo
+{
+	ItemStruct.ItemType item_type = 1;
+	repeated ItemInfo items = 2;
+}

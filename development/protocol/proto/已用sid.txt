@@ -1,0 +1,7 @@
+ACCOUNT	: 	0x0001
+USERROOM	: 	0x0002
+PLAYER		:	0x0003
+ROBOT		:	0x0004
+COMPUTER	:	0x0005
+INVENTORY             ：             0x0006     //  背包相关协议
+GAME		:	0x0010

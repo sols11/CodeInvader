@@ -1,0 +1,79 @@
+syntax = "proto3";
+import "Struct/CommonStruct.proto";
+package ItemStruct;
+
+
+enum ItemType{
+  AIModule = 0;
+  Equipment = 1;
+}
+
+// 物品信息项
+message BaseItemData
+{
+  int32 eid = 1;
+  ItemType item_type = 2; // 物品类型
+  int32 item_id = 3;      // 物品类型具体ID
+  string name = 4;        // 物品名称
+  bool collectable = 5;     // 物品被收集的状态
+  CommonStruct.NetTransform transform = 6;
+}
+
+// AI模块相关信息
+message AiItemInfo
+{
+  int32 item_id = 1;
+  string name = 2;
+  string info = 3;
+}
+
+// 武器装备部位
+enum EquipmentSlot{
+  Hand = 0;
+  Leg = 1;
+}
+
+enum EquipmentType{
+  empty_equiptype = 0;
+  // 手部装备
+  ShotGun = 0x0001;         // 霰弹枪
+  Assaultrifles = 0x0002;   // 突击枪
+  Gatling = 0x0003;         // 加特林
+  // 腿部装备
+  NormalLeg = 0x1001;       // 普通腿
+  DisplacementLeg = 0x1002; // 位移腿
+  FlightGear = 0x1003;      // 飞行装置 
+}
+
+// 战斗效果掩码
+enum SpecialEffects
+{
+  empty_effect = 0;
+  beat_back = 1;  // 击退效果
+  speed_up = 2;   // 加速效果
+  slow_down = 4;  // 敌人减速
+  can_fly = 8;    // 能否飞翔
+}
+
+// 装备相关信息
+message EquipItemInfo
+{
+  int32 equip_id = 1; // 与EquipmentID相同
+  EquipmentSlot slot = 2; // 装备位置
+  EquipmentType equip_type = 3; // 装备种类
+  string name = 4;
+  float weight = 5;
+  float setup_time = 6;
+  float attack_duration = 7;
+  repeated int32 attack = 8;
+  CommonStruct.NetVector3 atk_range = 9;
+  repeated CommonStruct.NetVector2 diff_range_atk = 10;
+  float rot_speed_reduce = 11;
+  // 特殊效果
+  int32 special_effects = 12;
+  // 每种特殊效果对应的数值
+  float beat_back = 13;
+  float speed_up = 14;
+  float slow_down = 15;
+  bool can_fly = 16;
+}

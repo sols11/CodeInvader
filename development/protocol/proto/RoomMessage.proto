@@ -1,0 +1,39 @@
+syntax = "proto3";
+import "Struct/CommonStruct.proto";
+package RoomMessage;
+
+enum proto_ids 
+{
+    EMPTY_PROTO = 0;
+
+    // service id
+    PLAYER_SERVICE = 0x0010;
+
+    // command id
+    PLAYERONLINE = 0x0001;
+    PULL = 0x0002;
+}
+
+
+// sender
+message PlayerOnlineRequest
+{
+    int32 rid = 1;
+    int32 eid = 2;
+    int32 uid = 3;
+}
+
+message PlayerOnlineResponse
+{
+    int32 result = 1;
+    int32 eid = 2;
+}
+
+// sender
+message PullResponse
+{
+    int32 result = 1;
+    repeated CommonStruct.NetPlayerData players = 2;
+    repeated CommonStruct.NetRobotData robots = 3;
+    repeated CommonStruct.NetComputerData computers = 4;
+}

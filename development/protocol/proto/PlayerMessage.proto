@@ -1,0 +1,98 @@
+syntax = "proto3";
+import "Struct/CommonStruct.proto";
+import "Struct/ItemStruct.proto";
+
+package PlayerMessage;
+
+enum proto_ids {
+  option allow_alias = true;
+  EMPTY_PROTO = 0;
+
+  // service id
+  PLAYER_SERVICE = 0x0003;
+
+  // command id
+  MOVE = 0x0001;
+  CRACK = 0x0002;
+  PICK_ITEM = 0x0003;
+  TAKE_DAMAGE = 0x0004;
+  COMPUTER_CRACK = 0x0005;
+  CRACK_COMPLETE = 0x0006;
+  TAKEOUT_ITEM = 0x0007;
+}
+
+message PlayerMoveRequest {
+  int32 rid = 1;
+  int32 eid = 2;
+  CommonStruct.NetVector3 velocity = 3;
+  CommonStruct.NetQuaternion rot = 4;
+}
+
+message PlayerMoveResponse {
+  int32 result = 1;
+  int32 eid = 2;
+  CommonStruct.NetVector3 pos = 3;
+  CommonStruct.NetQuaternion rot = 4;
+}
+
+message CrackRequest {
+  int32 rid = 1;
+  int32 eid = 2;
+  int32 computer_id = 3;
+  bool decode = 4;
+}
+
+message CrackResponse {
+  int32 result = 1;
+  int32 eid = 2; // playerid
+  int32 computer_id = 3;
+  bool decode = 4;
+  CommonStruct.NetTransform transform = 5;
+}
+
+// 单播
+message ComputerCrackResponse {
+  int32 result = 1;
+  int32 eid = 2; // computerid
+  bool startOrStop = 3;
+}
+
+message CrackCompleteRequest {
+  int32 rid = 1;
+  int32 eid = 2; // computerid
+}
+
+message CrackCompleteResponse {
+  int32 result = 1;
+  int32 eid = 2; // playerid
+  int32 computer_id = 3;
+}
+
+message PlayerPickRequest {
+  int32 rid = 1;
+  int32 eid = 2; // user eid
+  int32 picked_eid = 3; // the eid of the item picked 
+}
+
+message PlayerPickResponse{
+  // 物品被拾取后的Response，需要广播
+  int32 result = 1;
+  ItemStruct.BaseItemData item_data = 2;
+  int32 count = 3; 
+}
+
+message PlayerTakeOutRequest
+{
+  int32 rid = 1;
+  int32 eid = 2;
+  ItemStruct.ItemType item_type = 3;
+  int32 item_id = 4;
+}
+
+message PlayerTakeOutResponse
+{
+  // 物品被取出后的Response，需要广播
+  int32 result = 1;
+  ItemStruct.BaseItemData item_data = 2;
+  int32 count = 3;
+}
